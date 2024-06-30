@@ -1,0 +1,21 @@
+{
+   "jsConcepts" : [  
+    "Null Coalescing",
+   "Ternary",
+   "Event Delegation",
+   "Event Loop",
+   "Handlers",
+   "Asynchronous",
+   "Async/Await",
+   "Promise",
+   "Callback",
+   "Paint Cycles",
+   "Garbage Collection",
+    "Document Fragments",
+    "Closures",
+    "IIFE",
+    "Currying",
+    "Compose",
+    "Inheritance"
+    ]
+}
