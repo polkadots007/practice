@@ -1,0 +1,393 @@
+.header {
+    height: 7rem;
+    /* background-color: rgb(50, 102, 205); */
+}
+
+.header-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0rem 2.5rem;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: #87CEEB;
+    /* Sky Blue */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    /* Example shadow */
+
+}
+
+.header .name {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.container {
+    height: 80vh;
+    padding: 5px;
+}
+
+.icon-name {
+    font-weight: 700;
+    font-size: 1.5rem;
+    font-style: italic;
+}
+
+.menu {
+    height: 3rem;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 1rem;
+}
+
+.icon-box {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin: 5px;
+}
+
+.icon-rect {
+    /* Replace 'my-div' with your actual class name */
+    display: flex;
+    /* Use flexbox */
+    justify-content: center;
+    /* Center content horizontally */
+    align-items: center;
+    /* Center content vertically */
+    height: 1.1rem;
+    /* Specify the height */
+    padding: 20px !important;
+    /* Padding around the text */
+    margin: 5px;
+    /* Margin around the div */
+    box-sizing: border-box;
+    /* Include padding and border in the element's width and height */
+    text-align: center;
+    /* This will still ensure multiline text centers horizontally */
+}
+
+.icon-down,
+.icon-cross,
+.icon-tick {
+    width: 15px;
+    height: 15px;
+    padding: 5px;
+    font-weight: 600;
+    align-self: center;
+}
+
+.icon-change-status {
+    display: flex;
+}
+
+.card-container {
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
+}
+
+.incomplete-tasks,
+.completed-tasks {
+    display: flex;
+    flex-direction: row;
+}
+
+.completed-cards {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-completed {
+    font-weight: 600;
+    margin-top: 5px;
+    text-decoration: underline;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 8rem;
+    height: 10rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-content {
+    height: 8rem;
+    width: 7rem;
+    position: relative;
+    /* Position relative to place the circle absolutely inside */
+    background-color: #87CEEB;
+    /* Background color for the parent div */
+    text-align: center;
+    line-height: 100px;
+    /* Center text vertically */
+    cursor: pointer;
+    overflow: hidden;
+    /* Hide any overflow */
+    border-radius: 10px;
+    /* Optional: Round the corners of the parent div */
+    transition: background-color 0.3s ease;
+    /* Smooth transition on hover */
+}
+
+.complete .card-content {
+    background-color: #2F4F4F;
+}
+
+.card-content:hover {
+    background-color: #7EC8E3;
+    /* Slightly change background on hover */
+}
+
+.complete .card-content:hover {
+    background-color: #395c5c;
+    /* Slightly change background on hover */
+}
+
+.circle {
+    position: absolute;
+    /* Position the circle absolutely */
+    top: 10%;
+    left: 10%;
+    width: 20px;
+    /* Width of the circle */
+    height: 20px;
+    /* Height of the circle */
+    border-radius: 50%;
+    /* Make it a circle */
+    display: none;
+    /* Initially hide the circle */
+    cursor: pointer;
+    /* Pointer cursor to indicate it's clickable */
+    border: 2px solid white;
+    transition: opacity 0.3s ease;
+    /* Smooth transition for appearing */
+}
+
+.down-arrow {
+    position: absolute;
+    /* Position the circle absolutely */
+    top: 20%;
+    right: 0.2%;
+    display: block;
+    width: 15px;
+    height: 15px;
+    /* Initially hide the circle */
+    cursor: pointer;
+    color: black;
+}
+
+.down-arrow svg {
+    position: absolute;
+    /* Position the circle absolutely */
+    top: 10%;
+    right: 0.2%;
+    display: block;
+    color: black;
+}
+
+.card-content:hover .circle {
+    display: block;
+    /* Show the circle on hover */
+}
+
+.card-label {
+    position: relative;
+    width: 6.5rem;
+    height: 1rem;
+    padding-top: 5px;
+    overflow: hidden;
+    /* Hide any overflowing content */
+    text-overflow: ellipsis;
+    /* Show ellipsis for overflowing text */
+    white-space: nowrap;
+    /* Prevent text from wrapping to the next line */
+    font-size: 1rem;
+    /* Adjust font size as needed */
+    line-height: 1rem;
+    /* Match line height to height for better vertical alignment */
+}
+
+.card-label .label-text {
+    width: 5.5rem;
+    max-width: 5.5rem;
+    font-size: 0.8rem;
+    overflow: clip;
+}
+
+.edit-note {
+    color: black;
+}
+
+.button-primary {
+    background-color: #87CEEB;
+    /* Sky Blue */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-primary:hover {
+    background-color: #7EC8E3;
+    /* Slightly darker blue */
+}
+
+.button-accent {
+    background-color: #FF6F61;
+    /* Coral */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button-accent:hover {
+    background-color: #E05D56;
+    /* Slightly darker coral */
+}
+
+.todo-item {
+    background-color: #FFFFFF;
+    /* White Smoke */
+    border: 1px solid #DDDDDD;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.todo-item.completed {
+    background-color: #98FF98;
+    /* Mint Green */
+    text-decoration: line-through;
+}
+
+.error-message {
+    color: #FA8072;
+    /* Salmon */
+    font-weight: bold;
+}
+
+.footer {
+    background-color: #2F4F4F;
+    /* Slate Gray */
+    color: #D3D3D3;
+    /* Light Gray */
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    /* width: 100%; */
+    box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+    /* Optional shadow for subtle depth */
+}
+
+.footer a {
+    color: #87CEEB;
+    /* Sky Blue */
+    text-decoration: none;
+}
+
+.footer a:hover {
+    color: #87CEFA;
+    /* Light Sky Blue */
+    text-decoration: underline;
+    /* Optional underline for hover effect */
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.editor-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    min-height: 200px;
+    margin-top: 20px;
+    position: relative;
+    flex: 1;
+    /* Takes all remaining space */
+    /* Relative positioning for absolute children */
+    overflow-y: scroll;
+}
+
+.editor-toolbar {
+    margin-bottom: 40px;
+    /* display: flex;
+    align-items: center; */
+    position: relative;
+    /* Relative positioning to position the emoji picker */
+}
+
+.editor-toolbar button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.editor-toolbar .quill {
+    height: 20rem;
+}
+
+.editor-toolbar .ql-toolbar {
+    display: flex;
+    justify-content: end;
+    padding: 8px 5rem 8px 8px !important;
+}
+
+.editor-title .ql-editor {
+    font-weight: 700;
+}
+
+/* Emoji picker wrapper */
+.emoji-picker-wrapper {
+    position: absolute;
+    top: 35px;
+    /* Positioning it just below the toolbar */
+    left: 0;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    /* Smooth slide effect */
+    transform: translateY(-100%);
+    /* Hide by default */
+    overflow: hidden;
+    max-height: 300px;
+    /* Adjust based on your needs */
+}
+
+/* Show picker when visible */
+.emoji-picker-wrapper.visible {
+    transform: translate(-18rem, 0);
+    /* Slide into view */
+}
+
+.emoji-btn {
+    position: absolute;
+    right: 2rem;
+    top: 0.25rem;
+}
+
+.editor-action-btn,
+.view-btn {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.save-btn {
+    margin-right: 10px;
+}
+
+.disabled-btn {
+    background-color: grey
+}
