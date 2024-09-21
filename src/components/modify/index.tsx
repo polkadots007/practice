@@ -31,10 +31,7 @@ const EditNoteComponent = ({ note }: EditNoteTypes) => {
         return response.json(); // Parse the JSON response
       })
       .then((data) => {
-        console.log("Response from server:", data);
-        const { message, updatedNotes } = data;
-        console.log(message); // "Note updated successfully"
-        console.log(updatedNotes); // The updated note object
+        const { updatedNotes } = data;
         return updatedNotes;
       })
       .then((data: NoteType) => {

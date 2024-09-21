@@ -18,7 +18,7 @@ export default class NoteController {
   static async getHighestID(req: Request, res: Response): Promise<void> {
     try {
       // Construct the file path
-      const filePath = path.join(__dirname, "../../data/data.json");
+      const filePath = path.join(__dirname, "../../../data/data.json");
 
       // Read the JSON file asynchronously
       const jsonData = await fs.readFile(filePath, "utf-8");
@@ -39,7 +39,7 @@ export default class NoteController {
       const noteId = parseInt(req.params.id);
 
       // Construct the file path
-      const filePath = path.join(__dirname, "../../data/data.json");
+      const filePath = path.join(__dirname, "../../../data/data.json");
 
       // Read the JSON file
       const jsonData = await fs.readFile(filePath, "utf-8");
@@ -74,23 +74,30 @@ export default class NoteController {
     try {
       const noteId = parseInt(req.params.id);
       const { title, description, status } = req.body;
-
       // Construct the file path
-      const filePath = path.join(__dirname, "../../data/data.json");
+      const filePath = path.join(__dirname, "../../../data/data.json");
 
       // Read the JSON file
       const jsonData = await fs.readFile(filePath, "utf-8");
       const data = JSON.parse(jsonData);
       // Check if the note exists
-      if (!data.notes[noteId]) {
+      const searchedNote = data.notes.find(
+        (note: NoteType) => note.id === noteId
+      );
+      if (!(searchedNote.id === noteId)) {
         res.status(404).send({ message: "Note not found" });
+      } else if (!title && !description && !status) {
+        res.status(500).send({
+          params: { title: title, description: description, status: status },
+          message: "Invalid Parameters",
+        });
       }
       // Find the note by ID and remove it
       const updatedNotes = data.notes.map((note: NoteType) => {
         if (note.id === noteId) {
-          note.title = title;
-          note.description = description;
-          note.status = status;
+          note.title = title ?? note.title;
+          note.description = description ?? note.description;
+          note.status = status ?? note.status;
         }
         return note;
       });
@@ -119,7 +126,7 @@ export default class NoteController {
   static async getNotes(req: Request, res: Response): Promise<void> {
     try {
       // Construct the file path
-      const filePath = path.join(__dirname, "../../data/data.json");
+      const filePath = path.join(__dirname, "../../../data/data.json");
 
       // Read the JSON file asynchronously
       const jsonData = await fs.readFile(filePath, "utf-8");
@@ -136,7 +143,7 @@ export default class NoteController {
   static async createNote(req: Request, res: Response): Promise<void> {
     try {
       // Construct the file path
-      const filePath = path.join(__dirname, "../../data/data.json");
+      const filePath = path.join(__dirname, "../../../data/data.json");
 
       // Read the JSON file asynchronously
       const jsonData = await fs.readFile(filePath, "utf-8");

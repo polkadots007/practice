@@ -1,0 +1,10 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "Sample Note",
+      "description": "Sample Note is here!",
+      "status": "Complete"
+    }
+  ]
+}

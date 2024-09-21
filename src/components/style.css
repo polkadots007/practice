@@ -391,3 +391,21 @@
 .disabled-btn {
     background-color: grey
 }
+.checked {
+    position: absolute;
+    /* Position the circle absolutely */
+    top: 10%;
+    left: 10%;
+    width: 20px;
+    /* Width of the circle */
+    height: 20px;
+    /* Height of the circle */
+    border-radius: 50%;
+    /* Make it a circle */
+    display: block;
+    /* Initially hide the circle */
+    cursor: pointer;
+    /* Pointer cursor to indicate it's clickable */
+    border: 2px solid white;
+    background-color: yellowgreen;
+}

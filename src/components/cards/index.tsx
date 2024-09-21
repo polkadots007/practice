@@ -6,18 +6,26 @@ import { useState } from "react";
 
 interface NotesListProps {
   note: NoteType; // `data` prop is of `NoteType`
-  updateStatus: React.Dispatch<React.SetStateAction<boolean>>;
+  updateSelected: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
-const Card = ({ note, updateStatus }: NotesListProps) => {
+const Card = ({ note, updateSelected }: NotesListProps) => {
   const [clicked, setClicked] = useState<boolean>(false);
   const navigate = useNavigate();
   function clickNote(
     //   event: MouseEventHandler<HTMLDivElement>,
     noteId: number,
-    updateStatus: React.Dispatch<React.SetStateAction<boolean>>
+    updateSelected: React.Dispatch<React.SetStateAction<number[]>>
   ) {
     // navigate(ROUTES.EDIT, { state: note });
+    setClicked((prev: boolean) => !prev);
+    updateSelected((prev: Array<number>) => {
+      if (prev.includes(noteId)) {
+        return prev.filter((id: number) => id !== noteId);
+      } else {
+        return [...prev, noteId];
+      }
+    });
   }
   function handleEdit(note: NoteType) {
     navigate(ROUTES.EDIT, { state: note });
@@ -30,11 +38,9 @@ const Card = ({ note, updateStatus }: NotesListProps) => {
     >
       <div
         className="card-content"
-        onClick={(_event: React.MouseEventHandler<HTMLDivElement>) =>
-          clickNote(note.id, updateStatus)
-        }
+        onClick={() => clickNote(note?.id, updateSelected)}
       >
-        <span className="circle"></span>
+        <span className={`circle ${clicked && "checked"}`}></span>
       </div>
       <div className="card-label">
         <div className="label-text">{note.title}</div>
