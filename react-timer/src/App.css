@@ -1,0 +1,123 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.clock-face {
+  border: 5px solid lightseagreen;
+  outline: 5px solid rgb(5, 1, 5);
+  width: 50rem;
+  height: 50rem;
+  padding: 5px;
+  border-radius: 50%;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.clock-timer {
+  height: 10rem;
+  width: 35rem;
+  border: 1px solid turquoise;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+
+.unit, .joiner {
+  font-size: 130px;
+  margin: 5px;
+  color: gray;
+}
+
+.joiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  bottom: 5%;
+}
+
+.buttons {
+  margin-left: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.start button{
+  width: 8rem;
+  height: 8rem;
+  padding: 5px;
+  border-radius: 50%;
+  border: 2px solid gray;
+}
+
+.set button{
+  width: 6rem;
+  height: 2rem;
+  padding: 5px;
+  border: 2px solid gray;
+  margin-left: 10px;
+}
+
+.set .inp-timer {
+  width: 10rem;
+  height: 1.5rem;
+}
+
+.btn {
+  padding: 20px 0;
+  font-size: 1rem;
+}
+
+.set select {
+  width: 6rem;
+  height: 2rem;
+  padding: 5px;
+  margin-right: 10px;
+}
