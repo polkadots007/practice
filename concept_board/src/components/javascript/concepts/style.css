@@ -1,0 +1,53 @@
+.two-parts {
+    display: flex;
+    margin: 5px 10px;
+}
+.part {
+    width: 50%;
+}
+.part-one {
+    text-align: left;
+    max-height: 550px;
+    overflow-y: auto;
+}
+.part-two {
+    border: 1px solid gray;
+    border-radius: 5px;
+    max-height: 550px;
+    overflow-y: auto;
+}
+
+.part-one code {
+    display: block;
+    border: 1px solid gray;
+    height: 30px;
+    line-height: 30px;
+    background-color: darkgrey;
+    padding: 0 10px;
+    text-align: center;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    margin-right: 10px;
+}
+
+pre {
+    text-align: left;
+    background-color: darkgrey;
+    margin-right: 10px;
+}
+
+.part-two ul {
+    text-align: left;
+}
+
+.warning {
+    color: rgb(226, 100, 100)
+}
+
+.important {
+    font-weight: 600;
+}
+
+img {
+    margin: 5px;
+}

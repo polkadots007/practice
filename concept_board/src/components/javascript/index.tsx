@@ -4,9 +4,13 @@ import resetIcon from "/reset.png";
 import { useEffect, useState } from "react";
 import CardContent from "./card";
 
+interface Concepts {
+  [key:string]: string
+}
+
 const JSComponent = () => {
   const navigate = useNavigate();
-  const [jsConcepts, setJsConcepts] = useState<Array<string> | null>(null);
+  const [jsConcepts, setJsConcepts] = useState<Concepts>({});
   const [concept, setConcept] = useState<string | null>(null);
   useEffect(() => {
     fetch("/data/concepts.json")
@@ -37,14 +41,14 @@ const JSComponent = () => {
         <CardContent name={concept} />
       </div>
       <div className="list-items">
-        {jsConcepts?.map((item, index) => {
+        {Object.entries(jsConcepts)?.map((item, index) => {
           return (
             <div
               key={index}
-              className={`item-desc ${concept === item ? "on" : "off"}`}
-              onClick={() => setConcept(item)}
+              className={`item-desc ${concept === item[1] ? "on" : "off"}`}
+              onClick={() => setConcept(item[1])}
             >
-              {item}
+              {item[0]}
             </div>
           );
         })}

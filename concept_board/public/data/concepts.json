@@ -1,21 +1,23 @@
 {
-   "jsConcepts" : [  
-    "Null Coalescing",
-   "Ternary",
-   "Event Delegation",
-   "Event Loop",
-   "Handlers",
-   "Asynchronous",
-   "Async/Await",
-   "Promise",
-   "Callback",
-   "Paint Cycles",
-   "Garbage Collection",
-    "Document Fragments",
-    "Closures",
-    "IIFE",
-    "Currying",
-    "Compose",
-    "Inheritance"
-    ]
+   "jsConcepts" : {
+    "Null Coalescing" : "NullCoalesce",
+   "Ternary": "Ternary",
+   "DOM (E)": "DOM",
+   "Events (E)": "Events",
+   "Event Delegation" : "EventDel",
+   "Event Loop": "EventLoop",
+   "Handlers": "Handlers",
+   "Asynchronous": "Async",
+   "Async/Await":"AsyncAwait",
+   "Promise": "Promise",
+   "Callback": "Callback",
+   "Paint Cycles": "PaintCycles",
+   "Garbage Collection": "GarbageCol",
+    "Document Fragments": "DocFragments",
+    "Closures": "Closures",
+    "IIFE": "IIFE",
+    "Currying": "Currying",
+    "Compose":"Compose",
+    "Inheritance": "Inheritance"
+   }
 }
