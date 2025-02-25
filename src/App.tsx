@@ -1,22 +1,32 @@
-import { useState } from "react";
-import { Button, HStack } from "@chakra-ui/react";
-import { Home } from "./pages";
+import { Route, Routes } from "react-router";
+import { Home, Login, Register } from "./pages";
+import { AuthGuard } from "./helpers";
+import AuthProvider from "./firebase/AuthProvider";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
-const Demo = () => {
-  return (
-    <HStack>
-      <Button>Click me</Button>
-      <Button>Click me</Button>
-      <div className="!font-allura !text-9xl text-mint-500">habit tracker</div>
-      <span className="absolute inset-0 h-[10px] w-full bg-gradient-to-r from-blue-500 via-blue-300 to-transparent blur-md opacity-80"></span>
-      <p className="!font-script">This will use the Great Vibes font family.</p>
-    </HStack>
-  );
-};
 function App() {
-  const [count, setCount] = useState(0);
+  return (
+    <Provider store={store}>
+      <AuthProvider>
+        <Routes>
+          {/* Protected Home Page */}
+          <Route element={<AuthGuard />}>
+            <Route index element={<Home />} />
+            {/* <Route path="dashboard" element={<DashboardLayout />}>
+        <Route path="profile" element={<Profile />} />
+        <Route path="settings" element={<Settings />} /> */}
+          </Route>
 
-  return <Home />;
+          {/* Public Routes */}
+          {/* <Route path="about" element={<About />} /> */}
+
+          <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
+        </Routes>
+      </AuthProvider>
+    </Provider>
+  );
 }
 
 export default App;
