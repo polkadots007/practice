@@ -83,7 +83,7 @@ const Home = () => {
       </div>
       <Container w="100%" minH="60vh">
         <SimpleGrid columns={[2, null, 3]} gap="40px">
-          {Array.from({ length: 8 }).map((_, index) => (
+          {Array.from({ length: 9 }).map((_, index) => (
             <Stack key={index} gap="6" maxW="xs">
               <Skeleton height="200px" />
               <HStack width="full">
