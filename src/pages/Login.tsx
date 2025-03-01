@@ -132,11 +132,26 @@ const Login = () => {
                   type={show ? "text" : "password"}
                   placeholder="Enter password"
                   w="full"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      handleLogin();
+                    }
+                  }}
                 />
               </InputGroup>
             </Field>
             <Flex gap="4" align="flex-start">
-              <Button type="submit" bg="tomato" onClick={handleLogin}>
+              <Button
+                type="submit"
+                bg="tomato"
+                onClick={handleLogin}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleLogin();
+                  }
+                }}
+                tabIndex={0} // Ensures focus for key events
+              >
                 Login
               </Button>
               <Button
