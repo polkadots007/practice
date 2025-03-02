@@ -1,21 +1,22 @@
 export interface GoalDocProps {
-    category: string;
-    completed: boolean;
-    createdBy: string;
-    description: string;
-    image: string;
-    progress: number;
-    target: number;
-    severityColor: string;
-    title: string;
-    createdAt: {
-        seconds: number;
-        nanoseconds: number;
-    }
+  id: string;
+  category: string;
+  completed: boolean;
+  createdBy: string;
+  description: string;
+  image: string;
+  progress: number;
+  target: number;
+  severityColor: string;
+  title: string;
+  createdAt: {
+    seconds: number;
+    nanoseconds: number;
+  };
 }
 
-export interface Goal extends GoalDocProps{
-    id: string;
+export interface Goal extends GoalDocProps {
+  docId: string;
 }
 
 export interface NewGoalProps {

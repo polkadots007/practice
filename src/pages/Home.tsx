@@ -1,49 +1,33 @@
 import { Logo } from "@/components/items/logo";
 import {
-  Alert,
   Box,
   Button,
   Image,
-  Circle,
   Container,
   Flex,
   Heading,
   HStack,
-  PopoverArrow,
-  PopoverBody,
-  PopoverContent,
-  PopoverRoot,
-  PopoverTrigger,
   SimpleGrid,
   Skeleton,
   Stack,
 } from "@chakra-ui/react";
-import { RiAddFill, RiDeleteBin6Line } from "react-icons/ri";
-import { FaRegUser } from "react-icons/fa";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import { auth } from "@/firebaseConfig";
-import { signOut } from "firebase/auth";
-import { logoutUser } from "@/store/authSlice";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
 import { useReadGoals } from "@/firebase/services";
-import { uploadGoals } from "@/firebase/UploadData";
+// import { uploadGoals } from "@/firebase/UploadData";
 import { RootState } from "@/store";
-import CreateGoal from "./AddGoal";
+import CreateGoal from "../components/items/AddGoal";
+import DeleteGoal from "../components/items/DeleteGoal";
+import MarkDone from "../components/items/MarkDone";
+import GoalProgress from "../components/items/GoalProgress";
+import Profile from "@/components/items/Profile";
+import AlertNoGoal from "@/components/items/AlertNoGoal";
 
 const Home = () => {
-  const [open, setOpen] = useState(false);
   const { user } = useSelector((state: RootState) => state.auth);
   const { goals, loading, error } = useReadGoals(user?.email || "");
   console.log("goals", goals);
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
   const fallbackImageURL = "./pupper.jpg";
-  const handleLogout = async () => {
-    await signOut(auth);
-    dispatch(logoutUser());
-    navigate("/login");
-  };
 
   // useEffect(() => {
   //   uploadGoals();
@@ -51,48 +35,25 @@ const Home = () => {
 
   return (
     <div>
-      <Flex justify="center" align="center">
-        <Box flex="9">
-          <Logo />
-        </Box>
-        <Box flex="1">
-          <PopoverRoot
-            open={open}
-            onOpenChange={(e) => setOpen(e.open)}
-            size="xs"
-          >
-            <PopoverTrigger>
-              <Circle size="10" bg="teal" color="white">
-                <FaRegUser />
-              </Circle>
-            </PopoverTrigger>
-            <PopoverContent
-              w="15rem"
-              position="absolute"
-              top="6rem"
-              right="3rem"
-            >
-              <PopoverArrow />
-              <PopoverBody>
-                <Button onClick={handleLogout} variant="ghost" w="full">
-                  Logout
-                </Button>
-              </PopoverBody>
-            </PopoverContent>
-          </PopoverRoot>
-        </Box>
-      </Flex>
-      <div className="!my-10 !mx-5">
-        <Flex justify="flex-end">
-          <HStack mr="20">
-            <CreateGoal />
-            <Button colorPalette="red" variant="outline">
-              <RiDeleteBin6Line /> Delete Goal(s)
-            </Button>
-          </HStack>
+      <Container w="100%">
+        <Flex justify="center" align="center">
+          <Box flex="9">
+            <Logo />
+          </Box>
+          <Profile />
         </Flex>
-      </div>
-      <Container w="100%" minH="60vh" display="flex" justifyContent="center">
+        <div className="!my-10 w-full">
+          <Flex justify="flex-end" align="center" w="full">
+            <HStack>
+              <CreateGoal />
+              <Button colorPalette="red" variant="outline">
+                <RiDeleteBin6Line /> Delete Goal(s)
+              </Button>
+            </HStack>
+          </Flex>
+        </div>
+      </Container>
+      <Container w="100%" minH="60vh">
         <SimpleGrid columns={[2, null, 3]} gap="40px" w="full">
           {loading &&
             Array.from({ length: 9 }).map((_, index) => (
@@ -111,10 +72,12 @@ const Home = () => {
                   background={goal.severityColor}
                   padding="4"
                   color="white"
-                  height="20rem"
+                  height="4rem"
                 >
                   <Heading as="h2">{goal.category}</Heading>
                   {goal.description}
+                </Box>
+                <Box padding="8" background={goal.severityColor}>
                   <Image
                     src={fallbackImageURL}
                     height="200px"
@@ -123,41 +86,48 @@ const Home = () => {
                     margin="auto"
                   />
                 </Box>
+
                 <HStack
                   width="full"
+                  height="fit-content"
                   align="center"
+                  justify="space-between" // Ensures spacing and prevents overflow
                   mt="1"
                   border={`0.5px solid ${goal.severityColor}`}
                   borderRadius="md"
                   p="1"
+                  flexWrap="wrap"
                 >
                   <Box
                     background={goal.severityColor}
                     width="30px"
                     height="30px"
                     borderRadius="full"
+                    flexShrink={0}
                   ></Box>
-                  <Box width="85%" height="30px">
+                  <Box
+                    width={["100px", "150px", "200px"]}
+                    flex="1"
+                    height="30px"
+                    minWidth="100px" // Ensure minimum width
+                    overflow="hidden" // Prevent content overflow
+                    textOverflow="ellipsis" // Shows "..." if text is too long
+                    whiteSpace="nowrap" // Keeps text on a single line
+                  >
                     {goal.title}
                   </Box>
+                  <Flex gap="1" minWidth="50px" ml="auto" flexShrink={0}>
+                    <GoalProgress goal={goal} />
+                    <MarkDone goal={goal} />
+                    <DeleteGoal goal={goal} />
+                  </Flex>
                 </HStack>
               </Box>
             );
           })}
         </SimpleGrid>
       </Container>
-      {(error || goals.length === 0) && (
-        <Alert.Root
-          status="info"
-          colorPalette="teal"
-          width="40%"
-          height="fit-content"
-          margin="0 auto"
-        >
-          <Alert.Indicator />
-          <Alert.Title>No Goals Set</Alert.Title>
-        </Alert.Root>
-      )}
+      {!loading && (error || goals.length === 0) && <AlertNoGoal />}
     </div>
   );
 };
